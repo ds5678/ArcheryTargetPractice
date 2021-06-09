@@ -1,64 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Harmony;
 using MelonLoader;
 using UnityEngine;
-using Harmony;
 
 namespace ArcheryTargetPractice
 {
-    public class Implementation : MelonMod
-    {
-        public override void OnApplicationStart()
-        {
-            base.OnApplicationStart();
-            Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
-        }
-    }
+	public class Implementation : MelonMod
+	{
+		public override void OnApplicationStart()
+		{
+			Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
+		}
+	}
 
-    [HarmonyPatch(typeof(ArrowItem))]
-    [HarmonyPatch("HandleCollisionWithObject")]
-    internal class ArcheryTargetPractice
-    {
-        private static void Prefix(float ___m_ReleaseTime, GameObject collider, Vector3 collisionPoint)
-        {
-            // Must hit the target
-            if (collider.name != "OBJ_BullseyeTarget_Prefab")
-            {
-                return;
-            }
+	[HarmonyPatch(typeof(ArrowItem), "HandleCollisionWithObject")]
+	internal class ArcheryTargetPractice
+	{
+		private static void Prefix(ArrowItem __instance, GameObject collider, Vector3 collisionPoint)
+		{
+			// Must hit the target
+			if (collider.name != "OBJ_BullseyeTarget_Prefab") return;
 
-            // must be level 0 or 1 (1 or 2 in game)
-            int archerylevel = GameManager.GetSkillArchery().GetCurrentTierNumber();
-            if (archerylevel > 1)
-            {
-                return;
-            }
+			// must be level 0 or 1 (1 or 2 in game)
+			int archerylevel = GameManager.GetSkillArchery().GetCurrentTierNumber();
+			if (archerylevel > 1) return;
 
-            // Must be standing a decent distance away
-            var timeInAir = Time.time - ___m_ReleaseTime;
-            if (timeInAir < 0.25)
-            {
-                return;
-            }
+			// Must be standing a decent distance away
+			var timeInAir = Time.time - __instance.m_ReleaseTime;
+			if (timeInAir < 0.25) return;
 
-            // Must hit the paper bullseye (not the outer rim)
-            if (collisionPoint.x < 1646.7 || collisionPoint.x > 1647.2)
-            {
-                return;
-            }
-            if (collisionPoint.y < 43.9 || collisionPoint.y > 44.7)
-            {
-                return;
-            }
-            if (collisionPoint.z < 1827.9 || collisionPoint.z > 1828.6)
-            {
-                return;
-            }
+			// Must hit the paper bullseye (not the outer rim)
+			if (collisionPoint.x < 1646.7 || collisionPoint.x > 1647.2) return;
+			if (collisionPoint.y < 43.9 || collisionPoint.y > 44.7) return;
+			if (collisionPoint.z < 1827.9 || collisionPoint.z > 1828.6) return;
 
-            GameManager.GetSkillsManager().IncrementPointsAndNotify(SkillType.Archery, 1, SkillsManager.PointAssignmentMode.AssignOnlyInSandbox);
-        }
-    }
+			GameManager.GetSkillsManager().IncrementPointsAndNotify(SkillType.Archery, 1, SkillsManager.PointAssignmentMode.AssignOnlyInSandbox);
+		}
+	}
 }
