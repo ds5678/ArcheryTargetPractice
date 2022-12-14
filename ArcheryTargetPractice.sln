@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcheryTargetPractice", "ArcheryTargetPractice.csproj", "{D7D7080C-090D-4B73-95B5-3A235D0ABD47}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{590D7771-FA1B-4A4B-AB7C-6980C892056B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcheryTargetPractice", "ArcheryTargetPractice\ArcheryTargetPractice.csproj", "{65DAABF4-2F50-43BF-8B79-9AA8493D0674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +18,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D7D7080C-090D-4B73-95B5-3A235D0ABD47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7D7080C-090D-4B73-95B5-3A235D0ABD47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7D7080C-090D-4B73-95B5-3A235D0ABD47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7D7080C-090D-4B73-95B5-3A235D0ABD47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65DAABF4-2F50-43BF-8B79-9AA8493D0674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65DAABF4-2F50-43BF-8B79-9AA8493D0674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65DAABF4-2F50-43BF-8B79-9AA8493D0674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65DAABF4-2F50-43BF-8B79-9AA8493D0674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
